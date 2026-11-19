@@ -16,13 +16,23 @@ export const TitleSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: ${wclamp(12, 24)};
   margin-bottom: ${wclamp(30, 60)};
 `;
 
 export const Title = styled.h3`
+  flex-shrink: 0;
+  white-space: nowrap;
   font-size: ${wclamp(25, 50)};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   line-height: ${wclamp(31, 63)};
+`;
+
+export const DownloadButtonGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: ${wclamp(6, 10)};
 `;
 
 export const DownloadButton = styled.button`

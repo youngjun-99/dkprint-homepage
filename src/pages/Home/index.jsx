@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import catalogFile from "/src/assets/file/catalog.pdf";
+import { catalogs, downloadCatalog } from "/src/catalogs";
 import DownloadIcon from "../../components/icons/DownloadIcon";
 import ArrowIcon from "../../components/icons/ArrowIcon";
 import mainFacility from "../../assets/images/home/hero.webm";
@@ -16,6 +16,7 @@ import {
   HeroTitle,
   HeroName,
   HeroSubtitle,
+  DownloadButtonGroup,
   DownloadButton,
   FeatureSection,
   IntroduceText,
@@ -63,15 +64,6 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = catalogFile;
-    link.setAttribute("download", "catalog.pdf");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <MainContent>
       <HeroSection>
@@ -98,12 +90,19 @@ const Home = () => {
             )}
           </HeroSubtitle>
         </HeroContent>
-        <DownloadButton onClick={handleDownload}>
-          E-카탈로그 다운로드
-          <DownloadIconContainer>
-            <DownloadIcon />
-          </DownloadIconContainer>
-        </DownloadButton>
+        <DownloadButtonGroup>
+          {catalogs.map((catalog) => (
+            <DownloadButton
+              key={catalog.key}
+              onClick={() => downloadCatalog(catalog)}
+            >
+              {catalog.label}
+              <DownloadIconContainer>
+                <DownloadIcon />
+              </DownloadIconContainer>
+            </DownloadButton>
+          ))}
+        </DownloadButtonGroup>
       </HeroSection>
 
       <FeatureSection>

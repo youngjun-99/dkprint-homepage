@@ -3,11 +3,12 @@ import signboardImage from "/src/assets/images/about/signboard.png";
 import signatureImage from "/src/assets/images/about/signature.png";
 import DownloadIcon from "/src/components/icons/DownloadIcon";
 import LogoIcon from "/src/components/icons/LogoIcon";
-import catalogFile from "/src/assets/file/catalog.pdf";
+import { catalogs, downloadCatalog } from "/src/catalogs";
 import {
   GreetingContent,
   TitleSection,
   Title,
+  DownloadButtonGroup,
   DownloadButton,
   DownloadIconContainer,
   Container,
@@ -37,25 +38,23 @@ const Greeting = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = catalogFile;
-    link.setAttribute("download", "catalog.pdf");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <GreetingContent>
       <TitleSection>
         <Title>인사말</Title>
-        <DownloadButton onClick={handleDownload}>
-          E-카탈로그 다운로드
-          <DownloadIconContainer>
-            <DownloadIcon color="#166CE3" />
-          </DownloadIconContainer>
-        </DownloadButton>
+        <DownloadButtonGroup>
+          {catalogs.map((catalog) => (
+            <DownloadButton
+              key={catalog.key}
+              onClick={() => downloadCatalog(catalog)}
+            >
+              {catalog.label}
+              <DownloadIconContainer>
+                <DownloadIcon color="#166CE3" />
+              </DownloadIconContainer>
+            </DownloadButton>
+          ))}
+        </DownloadButtonGroup>
       </TitleSection>
       <Container>
         <SignboardContainer>

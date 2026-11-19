@@ -110,6 +110,18 @@ export const HeroSubtitle = styled.p`
   }
 `;
 
+export const DownloadButtonGroup = styled.div`
+  position: relative;
+  display: flex;
+  gap: ${wclamp(8, 16)};
+  margin: ${wclamp(0, 70)} auto ${wclamp(0, 118)} ${wclamp(0, 230)};
+
+  @media (max-width: 790px) {
+    gap: 8px;
+    margin: 24px auto ${wclamp(0, 118)} 20px;
+  }
+`;
+
 export const DownloadButton = styled.button`
   position: relative;
   background-color: ${({ theme }) => theme.colors.primary.DEFAULT};
@@ -127,13 +139,10 @@ export const DownloadButton = styled.button`
   justify-content: center;
   white-space: nowrap;
   gap: ${wclamp(6, 10)};
-  margin: ${wclamp(0, 70)} auto ${wclamp(0, 118)} ${wclamp(0, 230)};
 
   @media (max-width: 790px) {
-    margin: 0 auto ${wclamp(0, 118)} 20px;
     width: 155px;
     height: 32px;
-    margin-top: 24px;
   }
 `;
 
